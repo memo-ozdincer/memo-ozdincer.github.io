@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Memo Ozdincer &middot; Resume</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Resume of Memo Ozdincer - AI safety researcher and ML systems engineer.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>M</text></svg>">
+<style>
+:root {
+  --bg: #fafaf7;
+  --paper: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #555;
+  --rule: #d8d6cf;
+  --accent: #2b4f74;
+  --maxw: 800px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Iowan Old Style", "Charter", "Charis SIL", Cambria, Georgia, "Times New Roman", serif;
+  font-size: 14.5px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+main {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 56px 28px 96px;
+  background: var(--paper);
+  min-height: 100vh;
+}
+a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 2px; }
+a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+.topnav {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+.topnav a { color: var(--muted); text-decoration: none; }
+.topnav a:hover { color: var(--accent); text-decoration: underline; }
+
+header.resume-header {
+  text-align: center;
+  margin-bottom: 22px;
+  border-bottom: none;
+}
+header.resume-header h1 {
+  font-family: "Iowan Old Style", "Charter", Cambria, Georgia, serif;
+  font-weight: 700;
+  font-size: 36px;
+  margin: 0 0 10px;
+  letter-spacing: 0.01em;
+}
+header.resume-header .headline {
+  font-size: 14px;
+  color: var(--fg);
+  line-height: 1.55;
+  margin: 0 auto 14px;
+  max-width: 700px;
+}
+header.resume-header .headline strong { font-weight: 700; }
+header.resume-header .connections {
+  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  color: var(--fg);
+}
+header.resume-header .connections span.sep { color: var(--muted); margin: 0 6px; }
+
+h2 {
+  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin: 28px 0 12px;
+  padding-bottom: 4px;
+  border-bottom: 0.5pt solid var(--fg);
+  letter-spacing: 0.01em;
+}
+
+.entry {
+  margin-bottom: 18px;
+}
+.entry .row1 {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+.entry .company { font-weight: 700; font-size: 15px; }
+.entry .position { font-weight: 400; font-style: normal; color: var(--fg); }
+.entry .position::before { content: "\00a0\2014\00a0"; color: var(--muted); }
+.entry .date {
+  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.entry .summary {
+  font-size: 13.5px;
+  color: var(--fg);
+  margin: 2px 0 4px;
+}
+.entry ul {
+  margin: 4px 0 0 18px;
+  padding: 0;
+}
+.entry li {
+  margin-bottom: 5px;
+  line-height: 1.5;
+}
+
+.skills-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 12px;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+.skills-row .label { font-weight: 700; }
+
+footer {
+  margin-top: 36px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  main { padding: 36px 18px 72px; }
+  header.resume-header h1 { font-size: 28px; }
+  .entry .row1 { grid-template-columns: 1fr; }
+  .entry .date { margin-top: 1px; }
+  .skills-row { grid-template-columns: 1fr; gap: 2px; }
+}
+
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  main { padding: 0.5in; max-width: none; }
+  .topnav, footer { display: none; }
+  h2 { margin: 18pt 0 8pt; }
+  a { color: var(--fg); text-decoration: none; }
+}
+</style>
+</head>
+<body>
+
+<main>
+
+<nav class="topnav">
+  <a href="index.html">&larr; back to home</a> &nbsp;&middot;&nbsp; <a href="cv.pdf">Download PDF</a>
+</nav>
+
+<header class="resume-header">
+  <h1>Memo Ozdincer</h1>
+  <p class="headline">
+    <strong>Built</strong> current SoTA LLM-agent injection defense (NeurIPS, COLM submitted, first author).
+    <strong>Sped-up</strong> solar-cell processing 100,000&times; at NUS's SERIS lab.
+    <strong>Developed</strong> molecular-dynamics chemical diffusion model at Matter Lab &times; NVIDIA.
+    <br><br>
+    <strong>University of Toronto</strong>, BASc in Engineering Science (Eng. Physics + AI minor) &middot; Dean's list (3.7 GPA) &middot; Jun 2028
+  </p>
+  <p class="connections">
+    <a href="mailto:memo@cs.toronto.edu">memo@cs.toronto.edu</a>
+    <span class="sep">&bull;</span>
+    <a href="tel:+16475187370">+1 (647) 518-7370</a>
+    <span class="sep">&bull;</span>
+    <a href="https://linkedin.com/in/memo-ozdincer">linkedin.com/in/memo-ozdincer</a>
+    <span class="sep">&bull;</span>
+    <a href="https://github.com/memo-ozdincer">github.com/memo-ozdincer</a>
+  </p>
+</header>
+
+<h2>Experience</h2>
+
+<div class="entry">
+  <div class="row1">
+    <div><span class="company">Jinesis AI Lab (Vector Institute)</span><span class="position">AI Researcher (Safety)</span></div>
+    <div class="date">Aug 2025 &ndash; Present</div>
+  </div>
+  <p class="summary"><strong>Advisors:</strong> Zhijing Jin, Bernhard Sch&ouml;lkopf</p>
+  <ul>
+    <li>Designed SoTA weight-level LLM agent defense: beats Meta SecAlign, OpenAI IH, Google CaMeL, and MELON on the ASR-utility Pareto across all standard agentic benchmarks (&lt;0.8% ASR on AgentDojo, InjecAgent). First-author NeurIPS submission.</li>
+    <li>Built a 100K-trace dataset of entirely benign-looking prompt injections, plus a 566K JEPA-format training set, reverse-generating prompts from 15 jailbreak datasets &times; 20 augmentation methods (COLM, NeurIPS).</li>
+    <li>Rolled out and evaluated &gt;1M traces (1B+ tokens) across Llama, Qwen, Mistral, DeepSeek, and Gemma models (8B&ndash;685B) in Triton and TensorRT-LLM. Parallelized across 4&times;H100, 8&times;H200, and 2&times;/4&times;B200 nodes on bare metal/NVLink, never letting GPU utilization drop below 90%.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="row1">
+    <div><span class="company">Matter Lab (Vector Institute + NVIDIA)</span><span class="position">AI Researcher (Generative Chemistry)</span></div>
+    <div class="date">Sep 2025 &ndash; Present</div>
+  </div>
+  <p class="summary"><strong>Advisor:</strong> Al&aacute;n Aspuru-Guzik</p>
+  <ul>
+    <li>Beat Sella, the status-quo saddle-search algorithm, on highly noisy atomic potentials: 79% convergence at 1&Aring; noise vs. Sella's 53%. Submitting to NeurIPS 2026.</li>
+    <li>Redesigned search algorithms to be differentiable for generative model training, enabling adjoint backpropagation to train diffusion models on our custom vector field.</li>
+    <li>Parallelized over 3.8M molecular dynamics simulations across 12 nodes of 4&times; NVIDIA A100 SXM4 (NVLink) using our HIP MLIP model, developed with NVIDIA.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="row1">
+    <div><span class="company">National University of Singapore (SERIS)</span><span class="position">ML Researcher (Computational Physics)</span></div>
+    <div class="date">May 2025 &ndash; Aug 2025</div>
+  </div>
+  <p class="summary"><strong>Advisors:</strong> Erik Birgersson, Armin Aberle</p>
+  <ul>
+    <li>Designed physics-informed ML model for solar cell characterization, replacing a slow coupled-PDE solver (~4800 s/device) with millisecond inference, a 100,000&times; speedup. Deployed at SERIS for high-throughput screening.</li>
+    <li>Trained on 500K simulations (31 quantum solar-cell properties spanning 21 OOM). Hand-derived physics priors from 71 quantum and optoelectronic relations.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="row1">
+    <div><span class="company">aUToronto (UofT AutoDrive Team)</span><span class="position">Software Engineer (Computer Vision)</span></div>
+    <div class="date">May 2025 &ndash; Present</div>
+  </div>
+  <ul>
+    <li>Implemented BEVFusion-based sensor fusion pipeline (C++/Python) processing 1.1 GB/s from 6 cameras + 2 LiDARs at under 90 ms latency for real-time tracking.</li>
+    <li>Fine-tuned lightweight detection models (Twin+, YOLOPV2, YOLO11) with 35% perception speedup in adverse weather. Wrote LiDAR&ndash;camera calibration tooling in C++, reducing false-positive edge detections by 85%+.</li>
+  </ul>
+</div>
+
+<h2>Skills</h2>
+
+<div class="skills-row">
+  <span class="label">AI / ML</span>
+  <span>LLM &amp; agent safety, fine-tuning, evals, reinforcement learning, diffusion models, CV (YOLO, BEVFusion)</span>
+</div>
+<div class="skills-row">
+  <span class="label">Languages &amp; frameworks</span>
+  <span>Python, C++17, C, CUDA, PyTorch, vLLM, Triton, TensorRT-LLM, Hydra / OmegaConf, DVC, W&amp;B, TensorFlow, Docker, Kubernetes, HuggingFace, AWS, SLURM / HPC</span>
+</div>
+
+<footer>
+  <p>&copy; 2026 Memo Ozdincer &middot; <a href="index.html">memoozdincer.com</a></p>
+</footer>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Memo Ozdincer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Memo Ozdincer - AI safety researcher and ML systems engineer at the Vector Institute, University of Toronto Engineering Science.">
+<meta name="keywords" content="Memo Ozdincer, Mehmet Ozdincer, AI safety, LLM agents, prompt injection, AgentDojo, Vector Institute, Jinesis Lab, Matter Lab, University of Toronto, distributed training, H100, H200, FSDP, vLLM, Kubernetes, RLVR">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>M</text></svg>">
+<style>
+:root {
+  --bg: #fafaf7;
+  --fg: #1a1a1a;
+  --muted: #666;
+  --muted-2: #888;
+  --rule: #e5e3dd;
+  --accent: #2b4f74;
+  --accent-hover: #1a3654;
+  --accent-soft: #eef2f7;
+  --card-bg: #ffffff;
+  --code-bg: #1e2329;
+  --code-fg: #d4d4d4;
+  --tag-bg: #f1efe9;
+  --tag-fg: #444;
+  --maxw: 900px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 15.5px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+main {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+.ic {
+  width: 13px;
+  height: 13px;
+  vertical-align: -2px;
+  stroke-width: 1.8;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+header {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+header .avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 4px #fff, 0 2px 10px rgba(0,0,0,0.08);
+}
+header h1 {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+header .meta {
+  color: var(--muted);
+  font-size: 13.5px;
+  margin: 0;
+  line-height: 1.5;
+}
+header .meta a { color: var(--muted); }
+header .meta a:hover { color: var(--accent); }
+header .contacts {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.contact-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 13px;
+  background: transparent;
+  color: var(--fg);
+}
+.contact-pill:hover { text-decoration: none; color: var(--accent); }
+
+section { margin-top: 36px; }
+h2 {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 8px;
+  margin: 0 0 20px;
+}
+p { margin: 0 0 12px; }
+
+.bio p { font-size: 15.5px; line-height: 1.65; margin-bottom: 10px; }
+.bio .taste {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 6px 0 10px;
+}
+.bio .taste em { font-style: italic; }
+.bio .stack {
+  font-size: 13.5px;
+  color: var(--fg);
+  line-height: 1.55;
+  margin: 0;
+}
+.bio .stack .key {
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 11.5px;
+  margin-right: 6px;
+}
+.bio .looking {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 8px 0 0;
+}
+.bio .looking strong { color: var(--fg); font-weight: 600; }
+
+.building ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+.building li {
+  padding-left: 18px;
+  position: relative;
+  color: var(--fg);
+}
+.building li::before {
+  content: "\2022";
+  color: var(--accent);
+  position: absolute;
+  left: 4px;
+  top: 0;
+  font-weight: 700;
+}
+
+.code-cards { display: flex; flex-direction: column; gap: 12px; }
+.code-card {
+  background: var(--card-bg);
+  padding: 16px 20px;
+  border-radius: 4px;
+}
+.code-card .path {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 2px 7px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+.code-card .ch-title {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0 0 6px;
+}
+.code-card .ch-title .scope {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 13px;
+  margin-left: 6px;
+}
+.code-card .ch-body {
+  font-size: 13.5px;
+  color: #333;
+  margin: 0 0 8px;
+  line-height: 1.55;
+}
+.code-card .pills { margin-top: 4px; }
+
+.prose { font-size: 14.5px; line-height: 1.65; color: var(--fg); }
+.prose p { margin: 0 0 10px; }
+
+.also-entries { display: flex; flex-direction: column; gap: 14px; }
+.also-entry { font-size: 14.5px; }
+.also-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: baseline;
+  margin-bottom: 3px;
+}
+.also-org { font-weight: 600; color: var(--fg); }
+.also-role { color: var(--fg); font-weight: 400; }
+.also-date { font-size: 13px; color: var(--muted); white-space: nowrap; }
+.also-detail { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.55; }
+.also-advisor { margin-bottom: 5px; }
+.also-bullets {
+  margin: 0;
+  padding-left: 16px;
+  list-style: disc;
+}
+.also-bullets li {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 4px;
+}
+.prose .lead { font-weight: 500; }
+
+.pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  font-size: 12.5px;
+  font-weight: 500;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--accent);
+  line-height: 1;
+}
+.pill:hover { text-decoration: none; color: var(--accent-hover); }
+.pill.primary { background: #24292f; color: #fff; }
+.pill.primary:hover { color: #fff; background: #1a1e22; }
+.pill.draft-note { color: var(--muted); font-style: italic; background: transparent; }
+
+.paper {
+  background: var(--card-bg);
+  padding: 18px 20px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  gap: 22px;
+  align-items: center;
+}
+.paper .fig {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  overflow: hidden;
+  text-decoration: none;
+}
+.paper a.fig:hover { text-decoration: none; }
+.paper .fig img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+.paper .body { min-width: 0; }
+.paper .title {
+  font-size: 15.5px;
+  font-weight: 600;
+  margin: 0 0 5px;
+  line-height: 1.35;
+}
+.paper .authors {
+  color: var(--fg);
+  font-size: 13.5px;
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+.paper .authors a { color: var(--fg); }
+.paper .authors a:hover { color: var(--accent); }
+.paper .authors .me { color: var(--fg); font-weight: 400; }
+.paper .venue {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.paper .venue.draft { color: var(--muted); background: #f1efe9; }
+.orgs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 12px;
+  min-height: 48px;
+}
+.org {
+  height: 36px;
+  width: 36px;
+  object-fit: contain;
+  border-radius: 8px;
+  align-self: center;
+  display: block;
+  background: #fff;
+}
+.org.nus-seris { height: 60px; width: auto; max-width: 220px; }
+.org-tip { position: relative; display: inline-flex; align-items: center; }
+.org-tip::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--fg);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+.org-tip:hover::after { opacity: 1; }
+.paper .abstract {
+  font-size: 13.5px;
+  color: #333;
+  margin: 0 0 12px;
+  line-height: 1.55;
+}
+
+.clone {
+  margin-top: 9px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  background: var(--code-bg);
+  color: var(--code-fg);
+  padding: 6px 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.clone .cmd { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.clone .cmd .prompt { color: #6e7681; user-select: none; margin-right: 6px; }
+.clone button {
+  background: transparent;
+  border: 1px solid #444;
+  color: var(--code-fg);
+  font-size: 10.5px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+.clone button:hover { background: #2a2f37; }
+.clone button.copied { color: #7ee787; border-color: #7ee787; }
+
+.hf-logo {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  object-fit: contain;
+  vertical-align: -2px;
+}
+.pill.hf-pill {
+  color: #1a1a1a;
+  background: #fff;
+  border: 1px solid #e5e3dd;
+  padding: 3px 9px 3px 7px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  gap: 6px;
+}
+.pill.hf-pill:hover {
+  color: #1a1a1a;
+  text-decoration: none;
+  filter: brightness(0.97);
+}
+.pill.hf-odile      { background: #e6eef7; border-color: #c8d8eb; }
+.pill.hf-alice      { background: #fae8ec; border-color: #ecc8cf; }
+.pill.hf-perovskite { background: #f7ecd4; border-color: #e8d59e; }
+.pill.hf-jepa       { background: #f0e6f4; border-color: #d8c4dd; }
+.pill.hf-rrfa       { background: #e4f1ea; border-color: #bcd9c7; }
+
+footer {
+  margin-top: 48px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+@media (max-width: 820px) {
+  main { padding: 36px 18px 72px; }
+  .paper { grid-template-columns: 1fr; gap: 14px; padding: 16px 18px; }
+}
+@media (max-width: 560px) {
+  body { font-size: 15px; }
+  main { padding: 28px 14px 60px; }
+  header { grid-template-columns: 1fr; text-align: center; gap: 16px; }
+  header .avatar { margin: 0 auto; width: 110px; height: 110px; }
+  header h1 { font-size: 22px; }
+  header .meta { font-size: 13px; }
+  header .contacts { justify-content: center; }
+  header .meta br { display: none; }
+  .paper { padding: 14px 16px; margin-bottom: 8px; }
+  .paper .title { font-size: 15px; }
+  .paper .abstract { font-size: 13px; }
+  .paper .fig { max-height: 240px; }
+  .paper .fig img { max-height: 240px; width: auto; max-width: 100%; }
+  .orgs { gap: 8px; min-height: 0; }
+  .org { height: 30px; width: 30px; }
+  .org.nus-seris { height: 48px; max-width: 180px; }
+  .clone { font-size: 10.5px; }
+  .clone .cmd { font-size: 10.5px; }
+  h2 { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-mail" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="2"/>
+      <path d="M3 7l9 6 9-6"/>
+    </symbol>
+    <symbol id="i-github" viewBox="0 0 24 24">
+      <path d="M12 1.5C6.2 1.5 1.5 6.2 1.5 12c0 4.6 3 8.6 7.2 10 .5.1.7-.2.7-.5v-1.7c-2.9.6-3.5-1.4-3.5-1.4-.5-1.2-1.2-1.5-1.2-1.5-1-.7.1-.7.1-.7 1.1.1 1.6 1.1 1.6 1.1 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 2.9 1.1.8-.2 1.7-.3 2.7-.3s1.8.1 2.7.3c2-1.4 2.9-1.1 2.9-1.1.6 1.5.2 2.6.1 2.9.7.7 1.1 1.7 1.1 2.8 0 4-2.4 4.9-4.8 5.2.4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5 4.2-1.4 7.2-5.4 7.2-10C22.5 6.2 17.8 1.5 12 1.5z" style="fill:currentColor;stroke:none"/>
+    </symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24">
+      <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.3a1.7 1.7 0 110-3.5 1.7 1.7 0 010 3.5zM19 19h-3v-4.7c0-1.2 0-2.7-1.6-2.7s-1.9 1.3-1.9 2.6V19h-3v-9h2.9v1.2h.1a3.2 3.2 0 012.8-1.6c3.1 0 3.7 2 3.7 4.7z" style="fill:currentColor;stroke:none"/>
+    </symbol>
+    <symbol id="i-scholar" viewBox="0 0 24 24">
+      <path d="M12 3L1 9l11 6 9.5-5.18V17h2V9L12 3z" style="fill:currentColor;stroke:none"/>
+      <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" style="fill:currentColor;stroke:none"/>
+    </symbol>
+    <symbol id="i-file" viewBox="0 0 24 24">
+      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+      <path d="M14 2v6h6"/>
+    </symbol>
+    <symbol id="i-hf" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <circle cx="9" cy="11" r="1.2" style="fill:currentColor"/>
+      <circle cx="15" cy="11" r="1.2" style="fill:currentColor"/>
+      <path d="M8.5 14.5c1.5 1.5 5.5 1.5 7 0"/>
+    </symbol>
+    <symbol id="i-archive" viewBox="0 0 24 24">
+      <path d="M3 6h18v4H3z"/>
+      <path d="M5 10v10h14V10"/>
+      <path d="M10 14h4"/>
+    </symbol>
+    <symbol id="i-mailout" viewBox="0 0 24 24">
+      <path d="M4 4h16v16H4z"/>
+      <path d="M4 4l8 8 8-8"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main>
+
+<header>
+  <img src="assets/avatar.jpg" alt="Memo Ozdincer" class="avatar">
+  <div>
+    <h1>Memo Ozdincer</h1>
+    <p class="meta">
+      Engineering Science (Eng. Phys + Machine Intelligence) &middot; University of Toronto<br>
+      <a href="https://vectorinstitute.ai/">Vector Institute</a> &middot; <a href="https://zhijing-jin.com/home/">Jinesis Lab</a> &middot; <a href="https://www.matter.toronto.edu/">Matter Lab</a>
+    </p>
+    <div class="contacts">
+      <a class="contact-pill" href="mailto:memo@cs.toronto.edu"><svg class="ic"><use href="#i-mail"/></svg>memo@cs.toronto.edu</a>
+      <a class="contact-pill" href="resume.html"><svg class="ic"><use href="#i-file"/></svg>Resume</a>
+      <a class="contact-pill" href="cv.pdf"><svg class="ic"><use href="#i-file"/></svg>CV (PDF)</a>
+      <a class="contact-pill" href="https://github.com/memo-ozdincer"><svg class="ic"><use href="#i-github"/></svg>GitHub</a>
+      <a class="contact-pill" href="https://huggingface.co/memo-ozdincer"><img class="hf-logo" src="assets/hf-icon.webp" alt="">Hugging Face</a>
+      <a class="contact-pill" href="https://linkedin.com/in/memo-ozdincer"><svg class="ic"><use href="#i-linkedin"/></svg>LinkedIn</a>
+      <a class="contact-pill" href="https://scholar.google.com/citations?user=hyKn-jUAAAAJ"><svg class="ic"><use href="#i-scholar"/></svg>Scholar</a>
+    </div>
+  </div>
+</header>
+
+<section class="bio">
+  <p>
+    I work on representation-level defenses for LLM agents with
+    <a href="https://zhijing-jin.com/">Zhijing Jin</a> and
+    <a href="https://is.mpg.de/~bs">Bernhard Sch&ouml;lkopf</a> at the Vector Institute,
+    and on generative-chemistry methods for transition-state search at
+    <a href="https://www.matter.toronto.edu/">Matter Lab</a> with
+    <a href="https://www.matter.toronto.edu/">Al&aacute;n Aspuru-Guzik</a>.
+    Before this I built physics-informed surrogates for perovskite solar cells at the
+    <a href="https://www.seris.nus.edu.sg/">Solar Energy Research Institute of Singapore</a>
+    with <a href="https://cde.nus.edu.sg/me/staff/birgersson-karl-erik/">Erik Birgersson</a>.
+  </p>
+  <p class="stack"><span class="key">Stack</span>PyTorch, transformers, accelerate, FSDP, vLLM, Triton, TensorRT-LLM, SLURM, Kubernetes (RLVR env), HF Hub. Comfortable with CUDA-level training debugging.</p>
+</section>
+
+<section>
+  <h2>Currently building</h2>
+  <div class="building">
+    <ul>
+      <li>Agent capability evals for frontier open-source models (DeepSeek V4 284B, Mistral Large 3 123B) on real-world, industry-specific use cases</li>
+      <li>JepaAlign: JEPA-style predictive representation training for LLM safety</li>
+      <li>Training generative chemistry diffusion models for reaction-rate predictions (Matter Lab &times; NVIDIA)</li>
+      <li>Live ALICE demo on Hugging Face Spaces</li>
+      <li>Public release of adversarial augmentation toolkit</li>
+    </ul>
+  </div>
+</section>
+
+<section class="prose">
+  <h2>Models I have deployed</h2>
+  <p>
+    Trained Llama-3.3-70B, Llama-3.1-8B, and Qwen 2.5 / 3 adapters across multi-node
+    H100 / H200 / B200 clusters on ComputeCanada, vast.ai, SciNet, Vertex AI,
+    AWS SageMaker, and Azure ML (SLURM).
+  </p>
+  <p>
+    Trained and released rank-16 LoRA adapters for ODILE <a class="pill hf-pill hf-odile" href="https://huggingface.co/memo-ozdincer/odile-adapters"><img class="hf-logo" src="assets/hf-icon.webp" alt="">odile-adapters</a> and ALICE <a class="pill hf-pill hf-alice" href="https://huggingface.co/memo-ozdincer/alice-adapters"><img class="hf-logo" src="assets/hf-icon.webp" alt="">alice-adapters</a> across
+    Llama-3.1-8B, Llama-3.3-70B, Qwen2.5-7B / 14B, and Qwen3-8B / 32B. Adapters
+    target mid-to-late layers only (q/v/down/up_proj), where harmful routing
+    concentrates without disrupting early-layer feature extraction.
+  </p>
+  <p>
+    Physics-informed perovskite solar cell characterization Temporal Convolutional
+    Network <a class="pill hf-pill hf-perovskite" href="https://huggingface.co/memo-ozdincer/perovskite-jv-surrogate"><img class="hf-logo" src="assets/hf-icon.webp" alt="">perovskite-jv-surrogate</a>.
+    Millisecond inference, a 100,000&times; speedup. ~0.49M params, 3 seeds.
+    Trained on 500K simulations (31 quantum solar-cell properties).
+  </p>
+  <p>
+    JepaAlign adapts JEPA-style predictive representation training to LLM safety.
+    Trained rank-32 LoRA adapters (q_proj + v_proj) on Qwen3-8B <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepa-paper-results-2026-05-06/tree/main/ce_floor/ce_floor_align_jepa_augmented_qwen3/lora_adapter"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepa-qwen3</a>
+    and Llama-3-8B <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepa-paper-results-2026-05-06/tree/main/ce_floor_jepa_llama3_ablation/ce_floor_align_jepa_augmented_llama3/lora_adapter"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepa-llama3</a>
+    with a circuit-breaker objective on JEPA-augmented data. In progress.
+  </p>
+</section>
+
+<section class="prose">
+  <h2>Evals &amp; datasets I've deployed</h2>
+  <p>
+    Rolled out and evaluated over 1M traces (1B+ tokens) across Llama, Qwen, Mistral,
+    DeepSeek, and Gemma (8B&ndash;685B) in Triton and TensorRT-LLM. Parallelized across
+    4&times;H100, 8&times;H200, and 2&times;/4&times;B200 nodes on bare metal / NVLink,
+    always keeping GPU utilization above 90%.
+  </p>
+  <p>
+    I build agentic data and evaluation harnesses end-to-end.
+    A 100K-trace dataset of benign-looking prompt injections plus a 566K JEPA-format
+    training set <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepadata"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepadata</a>,
+    both reverse-generated from 15 jailbreak datasets &times; 20 augmentation methods.
+  </p>
+  <p>
+    Built a deterministic eval harness running 313K+ attack simulations across model
+    families, attack types, and supervision policies. Used as the verifiable
+    reward signal in an RLVR environment running on Kubernetes and as the backbone
+    of the ODILE / ALICE training data <a class="pill hf-pill hf-rrfa" href="https://huggingface.co/datasets/memo-ozdincer/rrfa-data"><img class="hf-logo" src="assets/hf-icon.webp" alt="">rrfa-data</a>.
+  </p>
+</section>
+
+<section>
+  <h2>Experience</h2>
+  <div class="also-entries">
+
+    <div class="also-entry">
+      <div class="also-row">
+        <div><span class="also-org">Jinesis AI Lab (Vector Institute)</span><span class="also-role"> &middot; AI Researcher, Safety</span></div>
+        <div class="also-date">Aug 2025 &ndash; present</div>
+      </div>
+      <p class="also-detail also-advisor">Advisors: Zhijing Jin, Bernhard Sch&ouml;lkopf</p>
+      <ul class="also-bullets">
+        <li>Designed SoTA weight-level LLM agent defense: beats Meta SecAlign, OpenAI IH, Google CaMeL, and MELON on the ASR-utility Pareto across all standard agentic benchmarks (&lt;0.8% ASR on AgentDojo, InjecAgent). First-author NeurIPS submission.</li>
+        <li>Built a 100K-trace dataset of benign-looking prompt injections, reverse-generated from 15 jailbreak datasets &times; 20 augmentation methods (COLM, NeurIPS).</li>
+        <li>Rolled out and evaluated &gt;1M traces (1B+ tokens) across Llama, Qwen, Mistral, DeepSeek, and Gemma (8B&ndash;685B) in Triton and TensorRT-LLM.</li>
+      </ul>
+    </div>
+
+    <div class="also-entry">
+      <div class="also-row">
+        <div><span class="also-org">Matter Lab (Vector Institute &times; NVIDIA)</span><span class="also-role"> &middot; AI Researcher, Generative Chemistry</span></div>
+        <div class="also-date">Sep 2025 &ndash; present</div>
+      </div>
+      <p class="also-detail also-advisor">Advisor: Al&aacute;n Aspuru-Guzik</p>
+      <ul class="also-bullets">
+        <li>Beat Sella (status-quo saddle-search algorithm) on highly noisy atomic potentials: 79% convergence at 1&Aring; noise vs. Sella's 53%.</li>
+        <li>Redesigned search algorithms to be differentiable for generative model training, enabling adjoint backpropagation to train diffusion models on a custom vector field.</li>
+        <li>Parallelized over 3.8M molecular dynamics simulations across 12 nodes of 4&times; NVIDIA A100 SXM4 (NVLink).</li>
+      </ul>
+    </div>
+
+    <div class="also-entry">
+      <div class="also-row">
+        <div><span class="also-org">National University of Singapore (SERIS)</span><span class="also-role"> &middot; ML Researcher, Computational Physics</span></div>
+        <div class="also-date">May 2025 &ndash; Aug 2025</div>
+      </div>
+      <p class="also-detail also-advisor">Advisors: Erik Birgersson, Armin Aberle &middot; Mitacs Globalink grant</p>
+      <ul class="also-bullets">
+        <li>Designed physics-informed ML model replacing a coupled-PDE solver (~4800 s/device) with millisecond inference, a 100,000&times; speedup. Deployed at SERIS for high-throughput screening.</li>
+        <li>Trained on 500K simulations (31 quantum solar-cell properties spanning 21 OOM) with hand-derived physics priors from 71 quantum and optoelectronic relations.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Also</h2>
+  <div class="also-entries">
+
+    <div class="also-entry">
+      <div class="also-row">
+        <div><span class="also-org">aUToronto (UofT AutoDrive)</span><span class="also-role"> &middot; Software Engineer, Computer Vision</span></div>
+        <div class="also-date">May 2025 &ndash; present</div>
+      </div>
+      <p class="also-detail">BEVFusion sensor fusion pipeline (C++/Python), 1.1&thinsp;GB/s from 6 cameras + 2 LiDARs at &lt;90&thinsp;ms latency. Fine-tuned Twin+, YOLOPV2, YOLO11 for 35% perception speedup in adverse weather. LiDAR&ndash;camera calibration tooling in C++, 85%+ reduction in false-positive edge detections.</p>
+    </div>
+
+    <div class="also-entry">
+      <div class="also-row">
+        <div><span class="also-org">UofT Aerospace Team (UTAT)</span><span class="also-role"> &middot; Rocket Avionics Engineer, Project Lead &middot; Liquid Propulsion</span></div>
+        <div class="also-date">Sep 2024 &ndash; present</div>
+      </div>
+      <p class="also-detail">Led servo-actuation subsystem: identified PWM jitter via oscilloscope/LTspice and redesigned the control board (I&sup2;C) with improved decoupling, EMI control, and connector reliability. Co-designed a compact 60&thinsp;mm &times; 60&thinsp;mm power-management board with a 192&thinsp;W synchronous boost stage (12&ndash;18&thinsp;V &rarr; 24&thinsp;V/8&thinsp;A) and multi-rail regulation (buck, boost, Li-ion charging); optimized thermal paths and high-di/dt loop areas.</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Code samples</h2>
+  <div class="code-cards">
+
+    <article class="code-card">
+      <span class="path">src/training/losses.py</span>
+      <p class="ch-title">Loss design space <span class="scope">RRFA / ODILE</span></p>
+      <p class="ch-body">
+        6 loss variants explored. Final design uses scaled L2-ReLU after discovering
+        cosine has vanishing gradients at LoRA scale: rank-16 updates in 4096-dim space
+        barely shift the cosine angle. KL divergence is computed over <code>attention_mask</code>,
+        not <code>loss_mask</code>: under injection-aware supervision, benign loss
+        masks are all-zero.
+      </p>
+      <div class="pills">
+        <a class="pill primary" href="https://github.com/memo-ozdincer/RRFA/blob/main/src/training/losses.py"><svg class="ic"><use href="#i-github"/></svg>Code</a>
+      </div>
+    </article>
+
+    <article class="code-card">
+      <span class="path">src/schemas/trace.py</span>
+      <p class="ch-title">Canonical trace representation <span class="scope">RRFA / ODILE</span></p>
+      <p class="ch-body">
+        Three-way harmful / benign / resisted classification. "Resisted" traces (attack
+        present, model refused) route to retain loss, not reroute loss. Loss-masking
+        policy is a first-class field on every trace, so 5 supervision strategies can be
+        A/B tested without touching training code.
+      </p>
+      <div class="pills">
+        <a class="pill primary" href="https://github.com/memo-ozdincer/RRFA/blob/main/src/schemas/trace.py"><svg class="ic"><use href="#i-github"/></svg>Code</a>
+      </div>
+    </article>
+
+    <article class="code-card">
+      <span class="path">src/dependencies/differentiable_projection.py</span>
+      <p class="ch-title">Hessian projection <span class="scope">Multi-Mode-GAD</span></p>
+      <p class="ch-body">
+        QR decomposition of Eckart generators removes rigid-body modes from
+        ML-predicted Hessians. No eigendecompositions in the projector, so gradients
+        flow cleanly through PyTorch. Reduced-basis approach produces a full-rank
+        vibrational Hessian without threshold-based filtering.
+      </p>
+      <div class="pills">
+        <a class="pill primary" href="https://github.com/memo-ozdincer/transition-state-sampling/blob/main/src/dependencies/differentiable_projection.py"><svg class="ic"><use href="#i-github"/></svg>Code</a>
+      </div>
+    </article>
+
+    <article class="code-card">
+      <span class="path">src/noisy/v2_tests/scripts/analyze_nr_failure_autopsy.py</span>
+      <p class="ch-title">Failure-mode autopsy <span class="scope">Multi-Mode-GAD</span></p>
+      <p class="ch-body">
+        Classifies failed optimizer trajectories: ghost modes (eigenvalues in
+        [-1e-4, 0) from ML noise), blind modes (negative modes with near-zero gradient
+        overlap), oscillating geometries, energy plateaus. The ghost-mode and
+        gradient-blindness diagnostics directly motivated the two algorithmic
+        innovations that broke 65% &rarr; ~100% convergence.
+      </p>
+      <div class="pills">
+        <a class="pill primary" href="https://github.com/memo-ozdincer/transition-state-sampling/blob/main/src/noisy/v2_tests/scripts/analyze_nr_failure_autopsy.py"><svg class="ic"><use href="#i-github"/></svg>Code</a>
+      </div>
+    </article>
+
+    <article class="code-card">
+      <span class="path">src/noisy/v2_tests/baselines/minimization.py</span>
+      <p class="ch-title">Diagnostics-driven optimizer <span class="scope">Multi-Mode-GAD</span></p>
+      <p class="ch-body">
+        <code>ModeTracker</code> uses greedy overlap matching to identify persistent
+        negative Hessian modes across steps. Blind-mode correction perturbs along
+        invisible modes with alternating sign. Split trust radii cap positive and
+        negative mode steps independently, preventing positive-mode trust collapse
+        from crushing saddle-point convergence.
+      </p>
+      <div class="pills">
+        <a class="pill primary" href="https://github.com/memo-ozdincer/transition-state-sampling/blob/main/src/noisy/v2_tests/baselines/minimization.py"><svg class="ic"><use href="#i-github"/></svg>Code</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <h2>Papers</h2>
+
+  <article class="paper">
+    <a class="fig" href="papers/odile.pdf"><img src="assets/odile-fig.png" alt=""></a>
+    <div class="body">
+      <p class="title">ODILE: Orthogonal Disruption of Injected Tool-Call Embeddings for Agentic Prompt Injection Defense</p>
+      <p class="authors"><span class="me">Mehmet Ozdincer</span>, <a href="https://scholar.google.com/citations?user=8a9YOF4AAAAJ&amp;hl=en">Samuel Simko</a>, <a href="https://scholar.google.com/citations?user=DZ-fHPgAAAAJ&amp;hl=en">Bernhard Sch&ouml;lkopf</a>, <a href="https://scholar.google.com/citations?user=Mdr6wjUAAAAJ&amp;hl=en">Zhijing Jin</a></p>
+      <span class="venue">COLM 2026 &middot; under review</span>
+      <div class="orgs">
+        <span class="org-tip" data-label="Jinesis AI Lab"><img class="org" src="assets/orgs/jinesis.jpg" alt="Jinesis AI Lab"></span>
+        <span class="org-tip" data-label="Vector Institute"><img class="org" src="assets/orgs/vector.jpg" alt="Vector Institute"></span>
+        <span class="org-tip" data-label="University of Toronto"><img class="org" src="assets/orgs/uoft.png" alt="University of Toronto"></span>
+        <span class="org-tip" data-label="Max Planck Institute for Intelligent Systems"><img class="org" src="assets/orgs/maxplanck.png" alt="Max Planck"></span>
+      </div>
+      <p class="abstract">
+        A representation-level defense that trains a lightweight LoRA adapter to disrupt
+        harmful internal states before they produce dangerous tool calls. On AgentDojo
+        with Llama-3.3-70B, ODILE reduces attack-success rate from 56.3% to 0.2% while
+        preserving 88% of benign capability, at standard inference cost with no external
+        dependencies. Broader eval: 84% &rarr; 4% ASR across 3 benchmarks &times; 4 model
+        families with zero-shot transfer.
+      </p>
+      <div class="pills">
+        <a class="pill primary" href="https://github.com/memo-ozdincer/ODILE"><svg class="ic"><use href="#i-github"/></svg>Code</a>
+        <a class="pill" href="papers/odile.pdf"><svg class="ic"><use href="#i-file"/></svg>Paper</a>
+        <a class="pill hf-pill hf-odile" href="https://huggingface.co/memo-ozdincer/odile-adapters"><img class="hf-logo" src="assets/hf-icon.webp" alt="">Adapters</a>
+        <span class="pill draft-note"><svg class="ic"><use href="#i-archive"/></svg>arXiv May 23</span>
+      </div>
+      <div class="clone"><span class="cmd"><span class="prompt">$</span>git clone https://github.com/memo-ozdincer/ODILE.git</span><button type="button" data-cmd="git clone https://github.com/memo-ozdincer/ODILE.git">Copy</button></div>
+    </div>
+  </article>
+
+  <article class="paper">
+    <a class="fig" href="papers/alice.pdf"><img src="assets/alice-fig.png" alt=""></a>
+    <div class="body">
+      <p class="title">Weight-Level Defenses Improve LLM Agent Adversarial Robustness</p>
+      <p class="authors"><span class="me">Mehmet Ozdincer</span>, <a href="https://scholar.google.com/citations?user=8a9YOF4AAAAJ&amp;hl=en">Samuel Simko</a>, <a href="https://scholar.google.com/citations?user=DZ-fHPgAAAAJ&amp;hl=en">Bernhard Sch&ouml;lkopf</a>, <a href="https://scholar.google.com/citations?user=Mdr6wjUAAAAJ&amp;hl=en">Zhijing Jin</a></p>
+      <span class="venue">NeurIPS 2026 &middot; under review</span>
+      <div class="orgs">
+        <span class="org-tip" data-label="Jinesis AI Lab"><img class="org" src="assets/orgs/jinesis.jpg" alt="Jinesis AI Lab"></span>
+        <span class="org-tip" data-label="Vector Institute"><img class="org" src="assets/orgs/vector.jpg" alt="Vector Institute"></span>
+        <span class="org-tip" data-label="University of Toronto"><img class="org" src="assets/orgs/uoft.png" alt="University of Toronto"></span>
+        <span class="org-tip" data-label="Max Planck Institute for Intelligent Systems"><img class="org" src="assets/orgs/maxplanck.png" alt="Max Planck"></span>
+      </div>
+      <p class="abstract">
+        A LoRA adapter trained on paired counterfactual benign / exploited agent traces.
+        The adapter steers attention activations in a narrow band of mid-to-late layers,
+        so the model keeps following the user's intent when adversarial content appears
+        in tool outputs. On AgentDojo (13 attacks &times; 4 suites, n = 8,177) with
+        Llama-3.3-70B, ALICE drives average attack-success rate from 14.04% to 0.31% at
+        1&times; inference cost.
+      </p>
+      <div class="pills">
+        <a class="pill primary" href="https://github.com/memo-ozdincer/ALICE"><svg class="ic"><use href="#i-github"/></svg>Code</a>
+        <a class="pill" href="papers/alice.pdf"><svg class="ic"><use href="#i-file"/></svg>Paper</a>
+        <a class="pill hf-pill hf-alice" href="https://huggingface.co/memo-ozdincer/alice-adapters"><img class="hf-logo" src="assets/hf-icon.webp" alt="">Adapters</a>
+      </div>
+      <div class="clone"><span class="cmd"><span class="prompt">$</span>git clone https://github.com/memo-ozdincer/ALICE.git</span><button type="button" data-cmd="git clone https://github.com/memo-ozdincer/ALICE.git">Copy</button></div>
+    </div>
+  </article>
+
+  <article class="paper">
+    <a class="fig" href="mailto:memo@cs.toronto.edu?subject=PRA%20draft%20request"><img src="assets/jepa-fig.png" alt=""></a>
+    <div class="body">
+      <p class="title">Predictive Representation Alignment Improves Generalization in LLM Safety</p>
+      <p class="authors"><a href="https://scholar.google.com/citations?user=8a9YOF4AAAAJ&amp;hl=en">Samuel Simko</a>, <span class="me">Mehmet Ozdincer</span>, Damiano Amatruda, <a href="https://scholar.google.com/citations?user=DZ-fHPgAAAAJ&amp;hl=en">Bernhard Sch&ouml;lkopf</a>, <a href="https://scholar.google.com/citations?user=Mdr6wjUAAAAJ&amp;hl=en">Zhijing Jin</a></p>
+      <span class="venue draft">ICLR 2027 submission &middot; draft in preparation</span>
+      <div class="orgs">
+        <span class="org-tip" data-label="Jinesis AI Lab"><img class="org" src="assets/orgs/jinesis.jpg" alt="Jinesis AI Lab"></span>
+        <span class="org-tip" data-label="Vector Institute"><img class="org" src="assets/orgs/vector.jpg" alt="Vector Institute"></span>
+        <span class="org-tip" data-label="University of Toronto"><img class="org" src="assets/orgs/uoft.png" alt="University of Toronto"></span>
+        <span class="org-tip" data-label="Max Planck Institute for Intelligent Systems"><img class="org" src="assets/orgs/maxplanck.png" alt="Max Planck"></span>
+      </div>
+      <p class="abstract">
+        Existing defenses suppress harmful prompts as isolated points in representation
+        space, missing the shared structure between adversarial and clean variants of
+        the same intent. PRA uses paired clean and adversarial prompts as two views of
+        the same intent, with a small predictor mapping adversarial-view hidden states
+        toward the clean view's commitment state. Across five attack classes and four
+        defenses, PRA reduces average ASR under StrongREJECT without harming benign
+        capability.
+      </p>
+      <div class="pills">
+        <a class="pill draft-note" href="mailto:memo@cs.toronto.edu?subject=PRA%20draft%20request"><svg class="ic"><use href="#i-mailout"/></svg>Draft available upon request</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="paper">
+    <a class="fig" href="papers/transition-states.pdf"><img src="assets/transition-states-fig.png" alt=""></a>
+    <div class="body">
+      <p class="title">Multi-Mode-GAD: Robust Transition State Search from Noisy Starting Geometries</p>
+      <p class="authors"><span class="me">Mehmet Ozdincer</span>, <a href="https://scholar.google.com/citations?user=jif_D5IAAAAJ&amp;hl=en">Andreas Burger</a>, <a href="https://scholar.google.com/citations?user=hRwNuqAAAAAJ&amp;hl=en">Al&aacute;n Aspuru-Guzik</a></p>
+      <span class="venue draft">ICLR 2027 submission &middot; draft in preparation</span>
+      <div class="orgs">
+        <span class="org-tip" data-label="Matter Lab"><img class="org" src="assets/orgs/matterlab.webp" alt="Matter Lab"></span>
+        <span class="org-tip" data-label="NVIDIA"><img class="org" src="assets/orgs/nvidia.jpg" alt="NVIDIA"></span>
+        <span class="org-tip" data-label="Vector Institute"><img class="org" src="assets/orgs/vector.jpg" alt="Vector Institute"></span>
+        <span class="org-tip" data-label="University of Toronto"><img class="org" src="assets/orgs/uoft.png" alt="University of Toronto"></span>
+      </div>
+      <p class="abstract">
+        Transition states are first-order saddle points on the Born&ndash;Oppenheimer
+        potential energy surface that govern chemical reaction rates. When starting
+        geometries are corrupted by noise (as arises naturally from generative models
+        or coarse MD), the search landscape becomes much harder. We add escape
+        mechanisms and adaptive timestep control to Gentlest Ascent Dynamics, achieving
+        near-perfect transition-state convergence from starting points perturbed by up
+        to 2.0&nbsp;&Aring; of random noise.
+      </p>
+      <div class="pills">
+        <a class="pill primary" href="https://github.com/memo-ozdincer/transition-state-sampling"><svg class="ic"><use href="#i-github"/></svg>Code</a>
+        <a class="pill" href="papers/transition-states.pdf"><svg class="ic"><use href="#i-file"/></svg>Theory report</a>
+      </div>
+      <div class="clone"><span class="cmd"><span class="prompt">$</span>git clone https://github.com/memo-ozdincer/transition-state-sampling.git</span><button type="button" data-cmd="git clone https://github.com/memo-ozdincer/transition-state-sampling.git">Copy</button></div>
+    </div>
+  </article>
+
+  <article class="paper">
+    <a class="fig" href="papers/perovskite.pdf"><img src="assets/perovskite-fig.png" alt=""></a>
+    <div class="body">
+      <p class="title">Physics-Informed Convolutional Surrogates for Coupled Drift-Diffusion Equations: Reconstructing Full J&ndash;V Curves of Perovskite Solar Cells</p>
+      <p class="authors"><span class="me">Mehmet Ozdincer</span>, <a href="https://cde.nus.edu.sg/me/staff/birgersson-karl-erik/">Erik Birgersson</a></p>
+      <span class="venue draft">npj Computational Materials &middot; in preparation</span>
+      <div class="orgs">
+        <span class="org-tip" data-label="National University of Singapore"><img class="org nus-seris" src="assets/orgs/nus_seris.png" alt="NUS &middot; SERIS"></span>
+      </div>
+      <p class="abstract">
+        A dilated-convolutional surrogate that reconstructs full current&ndash;voltage
+        curves of perovskite solar cells from 31 COMSOL drift-diffusion parameters.
+        Median R&sup2; = 0.9975, V<sub>oc</sub> error 0.39&nbsp;mV, ~10<sup>4</sup>&times;
+        speedup over COMSOL FEM (4800&nbsp;s/device to millisecond inference). Trained
+        on ~150k simulated devices with hand-derived physics priors. Deployed at SERIS
+        for high-throughput screening.
+      </p>
+      <div class="pills">
+        <a class="pill primary" href="https://github.com/memo-ozdincer/perovskite-jv-surrogate"><svg class="ic"><use href="#i-github"/></svg>Code</a>
+        <a class="pill" href="papers/perovskite.pdf"><svg class="ic"><use href="#i-file"/></svg>Paper</a>
+        <a class="pill hf-pill hf-perovskite" href="https://huggingface.co/memo-ozdincer/perovskite-jv-surrogate"><img class="hf-logo" src="assets/hf-icon.webp" alt="">Weights</a>
+      </div>
+      <div class="clone"><span class="cmd"><span class="prompt">$</span>git clone https://github.com/memo-ozdincer/perovskite-jv-surrogate.git</span><button type="button" data-cmd="git clone https://github.com/memo-ozdincer/perovskite-jv-surrogate.git">Copy</button></div>
+    </div>
+  </article>
+</section>
+
+<footer>
+  <p>Last updated May 2026 &middot; <a href="resume.html">Resume</a> &middot; <a href="cv.pdf">CV (PDF)</a> &middot; <a href="mailto:memo@cs.toronto.edu">memo@cs.toronto.edu</a></p>
+</footer>
+
+</main>
+
+<script>
+document.querySelectorAll('.clone button').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(btn.dataset.cmd);
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1400);
+    } catch (e) {}
+  });
+});
+</script>
+</body>
+</html>
