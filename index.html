@@ -501,15 +501,14 @@ footer {
 
 <section class="bio">
   <p>
-    I work on representation-level defenses for LLM agents with
-    <a href="https://zhijing-jin.com/">Zhijing Jin</a> and
-    <a href="https://is.mpg.de/~bs">Bernhard Sch&ouml;lkopf</a> at the Vector Institute,
-    and on generative-chemistry methods for transition-state search at
-    <a href="https://www.matter.toronto.edu/">Matter Lab</a> with
+    I build representation-level defenses, agentic datasets, and eval harnesses
+    for LLM agents. ODILE drops AgentDojo ASR from 56.3% to 0.2%; broader eval is
+    84% &rarr; 4% across 3 benchmarks &times; 4 model families. I also work on
+    generative chemistry with the Matter Lab &times; NVIDIA collaboration on noisy
+    transition-state search. Advised by
+    <a href="https://zhijing-jin.com/">Zhijing Jin</a>,
+    <a href="https://is.mpg.de/~bs">Bernhard Sch&ouml;lkopf</a>, and
     <a href="https://www.matter.toronto.edu/">Al&aacute;n Aspuru-Guzik</a>.
-    Before this I built physics-informed surrogates for perovskite solar cells at the
-    <a href="https://www.seris.nus.edu.sg/">Solar Energy Research Institute of Singapore</a>
-    with <a href="https://cde.nus.edu.sg/me/staff/birgersson-karl-erik/">Erik Birgersson</a>.
   </p>
   <p class="stack"><span class="key">Stack</span>PyTorch, transformers, accelerate, FSDP, vLLM, Triton, TensorRT-LLM, SLURM, Kubernetes (RLVR env), HF Hub. Comfortable with CUDA-level training debugging.</p>
 </section>
@@ -574,74 +573,6 @@ footer {
     reward signal in an RLVR environment running on Kubernetes and as the backbone
     of the ODILE / ALICE training data <a class="pill hf-pill hf-rrfa" href="https://huggingface.co/datasets/memo-ozdincer/rrfa-data"><img class="hf-logo" src="assets/hf-icon.webp" alt="">rrfa-data</a>.
   </p>
-</section>
-
-<section>
-  <h2>Experience</h2>
-  <div class="also-entries">
-
-    <div class="also-entry">
-      <div class="also-row">
-        <div><span class="also-org">Jinesis AI Lab (Vector Institute)</span><span class="also-role"> &middot; AI Researcher, Safety</span></div>
-        <div class="also-date">Aug 2025 &ndash; present</div>
-      </div>
-      <p class="also-detail also-advisor">Advisors: Zhijing Jin, Bernhard Sch&ouml;lkopf</p>
-      <ul class="also-bullets">
-        <li>Designed SoTA weight-level LLM agent defense: beats Meta SecAlign, OpenAI IH, Google CaMeL, and MELON on the ASR-utility Pareto across all standard agentic benchmarks (&lt;0.8% ASR on AgentDojo, InjecAgent). First-author NeurIPS submission.</li>
-        <li>Built a 100K-trace dataset of benign-looking prompt injections, reverse-generated from 15 jailbreak datasets &times; 20 augmentation methods (COLM, NeurIPS).</li>
-        <li>Rolled out and evaluated &gt;1M traces (1B+ tokens) across Llama, Qwen, Mistral, DeepSeek, and Gemma (8B&ndash;685B) in Triton and TensorRT-LLM.</li>
-      </ul>
-    </div>
-
-    <div class="also-entry">
-      <div class="also-row">
-        <div><span class="also-org">Matter Lab (Vector Institute &times; NVIDIA)</span><span class="also-role"> &middot; AI Researcher, Generative Chemistry</span></div>
-        <div class="also-date">Sep 2025 &ndash; present</div>
-      </div>
-      <p class="also-detail also-advisor">Advisor: Al&aacute;n Aspuru-Guzik</p>
-      <ul class="also-bullets">
-        <li>Beat Sella (status-quo saddle-search algorithm) on highly noisy atomic potentials: 79% convergence at 1&Aring; noise vs. Sella's 53%.</li>
-        <li>Redesigned search algorithms to be differentiable for generative model training, enabling adjoint backpropagation to train diffusion models on a custom vector field.</li>
-        <li>Parallelized over 3.8M molecular dynamics simulations across 12 nodes of 4&times; NVIDIA A100 SXM4 (NVLink).</li>
-      </ul>
-    </div>
-
-    <div class="also-entry">
-      <div class="also-row">
-        <div><span class="also-org">National University of Singapore (SERIS)</span><span class="also-role"> &middot; ML Researcher, Computational Physics</span></div>
-        <div class="also-date">May 2025 &ndash; Aug 2025</div>
-      </div>
-      <p class="also-detail also-advisor">Advisors: Erik Birgersson, Armin Aberle &middot; Mitacs Globalink grant</p>
-      <ul class="also-bullets">
-        <li>Designed physics-informed ML model replacing a coupled-PDE solver (~4800 s/device) with millisecond inference, a 100,000&times; speedup. Deployed at SERIS for high-throughput screening.</li>
-        <li>Trained on 500K simulations (31 quantum solar-cell properties spanning 21 OOM) with hand-derived physics priors from 71 quantum and optoelectronic relations.</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<section>
-  <h2>Also</h2>
-  <div class="also-entries">
-
-    <div class="also-entry">
-      <div class="also-row">
-        <div><span class="also-org">aUToronto (UofT AutoDrive)</span><span class="also-role"> &middot; Software Engineer, Computer Vision</span></div>
-        <div class="also-date">May 2025 &ndash; present</div>
-      </div>
-      <p class="also-detail">BEVFusion sensor fusion pipeline (C++/Python), 1.1&thinsp;GB/s from 6 cameras + 2 LiDARs at &lt;90&thinsp;ms latency. Fine-tuned Twin+, YOLOPV2, YOLO11 for 35% perception speedup in adverse weather. LiDAR&ndash;camera calibration tooling in C++, 85%+ reduction in false-positive edge detections.</p>
-    </div>
-
-    <div class="also-entry">
-      <div class="also-row">
-        <div><span class="also-org">UofT Aerospace Team (UTAT)</span><span class="also-role"> &middot; Rocket Avionics Engineer, Project Lead &middot; Liquid Propulsion</span></div>
-        <div class="also-date">Sep 2024 &ndash; present</div>
-      </div>
-      <p class="also-detail">Led servo-actuation subsystem: identified PWM jitter via oscilloscope/LTspice and redesigned the control board (I&sup2;C) with improved decoupling, EMI control, and connector reliability. Co-designed a compact 60&thinsp;mm &times; 60&thinsp;mm power-management board with a 192&thinsp;W synchronous boost stage (12&ndash;18&thinsp;V &rarr; 24&thinsp;V/8&thinsp;A) and multi-rail regulation (buck, boost, Li-ion charging); optimized thermal paths and high-di/dt loop areas.</p>
-    </div>
-
-  </div>
 </section>
 
 <section>
@@ -720,6 +651,51 @@ footer {
         <a class="pill primary" href="https://github.com/memo-ozdincer/transition-state-sampling/blob/main/src/noisy/v2_tests/baselines/minimization.py"><svg class="ic"><use href="#i-github"/></svg>Code</a>
       </div>
     </article>
+
+  </div>
+</section>
+
+<section>
+  <h2>Experience</h2>
+  <div class="also-entries">
+
+    <div class="also-entry">
+      <div class="also-row">
+        <div><span class="also-org">Jinesis AI Lab (Vector Institute)</span><span class="also-role"> &middot; AI Researcher, Safety</span></div>
+        <div class="also-date">Aug 2025 &ndash; present</div>
+      </div>
+      <p class="also-detail also-advisor">Advisors: Zhijing Jin, Bernhard Sch&ouml;lkopf</p>
+      <ul class="also-bullets">
+        <li>Designed SoTA weight-level LLM agent defense: beats Meta SecAlign, OpenAI IH, Google CaMeL, and MELON on the ASR-utility Pareto across all standard agentic benchmarks (&lt;0.8% ASR on AgentDojo, InjecAgent). First-author NeurIPS submission.</li>
+        <li>Built a 100K-trace dataset of benign-looking prompt injections, reverse-generated from 15 jailbreak datasets &times; 20 augmentation methods (COLM, NeurIPS).</li>
+        <li>Rolled out and evaluated &gt;1M traces (1B+ tokens) across Llama, Qwen, Mistral, DeepSeek, and Gemma (8B&ndash;685B) in Triton and TensorRT-LLM.</li>
+      </ul>
+    </div>
+
+    <div class="also-entry">
+      <div class="also-row">
+        <div><span class="also-org">Matter Lab (Vector Institute &times; NVIDIA)</span><span class="also-role"> &middot; AI Researcher, Generative Chemistry</span></div>
+        <div class="also-date">Sep 2025 &ndash; present</div>
+      </div>
+      <p class="also-detail also-advisor">Advisor: Al&aacute;n Aspuru-Guzik</p>
+      <ul class="also-bullets">
+        <li>Outperformed Sella, the status-quo saddle-search algorithm, on our high-noise benchmarks (79% vs. 53% at 1&Aring;).</li>
+        <li>Redesigned search algorithms to be differentiable for generative model training, enabling adjoint backpropagation to train diffusion models on a custom vector field.</li>
+        <li>Parallelized over 3.8M molecular dynamics simulations across 12 nodes of 4&times; NVIDIA A100 SXM4 (NVLink).</li>
+      </ul>
+    </div>
+
+    <div class="also-entry">
+      <div class="also-row">
+        <div><span class="also-org">National University of Singapore (SERIS)</span><span class="also-role"> &middot; ML Researcher, Computational Physics</span></div>
+        <div class="also-date">May 2025 &ndash; Aug 2025</div>
+      </div>
+      <p class="also-detail also-advisor">Advisors: Erik Birgersson, Armin Aberle &middot; Mitacs Globalink grant</p>
+      <ul class="also-bullets">
+        <li>Designed physics-informed ML model replacing a coupled-PDE solver (~4800 s/device) with millisecond inference, a 100,000&times; speedup. Deployed at SERIS for high-throughput screening.</li>
+        <li>Trained on 500K simulations (31 quantum solar-cell properties spanning 21 OOM) with hand-derived physics priors from 71 quantum and optoelectronic relations.</li>
+      </ul>
+    </div>
 
   </div>
 </section>
@@ -867,6 +843,29 @@ footer {
       <div class="clone"><span class="cmd"><span class="prompt">$</span>git clone https://github.com/memo-ozdincer/perovskite-jv-surrogate.git</span><button type="button" data-cmd="git clone https://github.com/memo-ozdincer/perovskite-jv-surrogate.git">Copy</button></div>
     </div>
   </article>
+</section>
+
+<section>
+  <h2>Also</h2>
+  <div class="also-entries">
+
+    <div class="also-entry">
+      <div class="also-row">
+        <div><span class="also-org">aUToronto (UofT AutoDrive)</span><span class="also-role"> &middot; Software Engineer, Computer Vision</span></div>
+        <div class="also-date">May 2025 &ndash; present</div>
+      </div>
+      <p class="also-detail">BEVFusion sensor fusion pipeline (C++/Python), 1.1&thinsp;GB/s from 6 cameras + 2 LiDARs at &lt;90&thinsp;ms latency. Fine-tuned Twin+, YOLOPV2, YOLO11 for 35% perception speedup in adverse weather. LiDAR&ndash;camera calibration tooling in C++, 85%+ reduction in false-positive edge detections.</p>
+    </div>
+
+    <div class="also-entry">
+      <div class="also-row">
+        <div><span class="also-org">UofT Aerospace Team (UTAT)</span><span class="also-role"> &middot; Rocket Avionics Engineer, Project Lead &middot; Liquid Propulsion</span></div>
+        <div class="also-date">Sep 2024 &ndash; present</div>
+      </div>
+      <p class="also-detail">Led servo-actuation subsystem: identified PWM jitter via oscilloscope/LTspice and redesigned the control board (I&sup2;C) with improved decoupling, EMI control, and connector reliability. Co-designed a compact 60&thinsp;mm &times; 60&thinsp;mm power-management board with a 192&thinsp;W synchronous boost stage (12&ndash;18&thinsp;V &rarr; 24&thinsp;V/8&thinsp;A) and multi-rail regulation (buck, boost, Li-ion charging); optimized thermal paths and high-di/dt loop areas.</p>
+    </div>
+
+  </div>
 </section>
 
 <footer>
