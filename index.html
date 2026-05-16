@@ -699,7 +699,7 @@ footer {
         [-1e-4, 0) from ML noise), blind modes (negative modes with near-zero gradient
         overlap), oscillating geometries, energy plateaus. The ghost-mode and
         gradient-blindness diagnostics directly motivated the two algorithmic
-        innovations that broke 65% &rarr; ~100% convergence.
+        innovations that lifted convergence from 53% to 79% at 1&Aring; noise.
       </p>
       <div class="pills">
         <a class="pill primary" href="https://github.com/memo-ozdincer/transition-state-sampling/blob/main/src/noisy/v2_tests/scripts/analyze_nr_failure_autopsy.py"><svg class="ic"><use href="#i-github"/></svg>Code</a>
@@ -830,9 +830,9 @@ footer {
         potential energy surface that govern chemical reaction rates. When starting
         geometries are corrupted by noise (as arises naturally from generative models
         or coarse MD), the search landscape becomes much harder. We add escape
-        mechanisms and adaptive timestep control to Gentlest Ascent Dynamics, achieving
-        near-perfect transition-state convergence from starting points perturbed by up
-        to 2.0&nbsp;&Aring; of random noise.
+        mechanisms and adaptive timestep control to Gentlest Ascent Dynamics, lifting
+        transition-state convergence from 53% (Sella, status-quo) to 79% at 1&nbsp;&Aring;
+        of random noise.
       </p>
       <div class="pills">
         <a class="pill primary" href="https://github.com/memo-ozdincer/transition-state-sampling"><svg class="ic"><use href="#i-github"/></svg>Code</a>
@@ -854,7 +854,7 @@ footer {
       <p class="abstract">
         A dilated-convolutional surrogate that reconstructs full current&ndash;voltage
         curves of perovskite solar cells from 31 COMSOL drift-diffusion parameters.
-        Median R&sup2; = 0.9975, V<sub>oc</sub> error 0.39&nbsp;mV, ~10<sup>4</sup>&times;
+        Median R&sup2; = 0.9975, V<sub>oc</sub> error 0.39&nbsp;mV, 100,000&times;
         speedup over COMSOL FEM (4800&nbsp;s/device to millisecond inference). Trained
         on ~150k simulated devices with hand-derived physics priors. Deployed at SERIS
         for high-throughput screening.
