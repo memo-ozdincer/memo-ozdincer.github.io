@@ -556,51 +556,56 @@ footer {
 <section class="prose">
   <h2>Models I've deployed</h2>
   <p>
-    Trained Llama-3.3-70B, Llama-3.1-8B, and Qwen 2.5 / 3 adapters across multi-node
-    H100 / H200 / B200 clusters on ComputeCanada, vast.ai, SciNet, Vertex AI,
-    AWS SageMaker, and Azure ML (SLURM).
+    <strong>Multi-node distributed training.</strong>
+    Llama-3.3-70B, Llama-3.1-8B, and Qwen 2.5 / 3 adapters across
+    H100 / H200 / B200 clusters on SciNet, vast.ai, Vertex AI,
+    AWS SageMaker, and Azure ML.
   </p>
   <p>
-    Trained and released rank-16 LoRA adapters for ODILE <a class="pill hf-pill hf-odile" href="https://huggingface.co/memo-ozdincer/odile-adapters"><img class="hf-logo" src="assets/hf-icon.webp" alt="">odile-adapters</a> and ALICE <a class="pill hf-pill hf-alice" href="https://huggingface.co/memo-ozdincer/alice-adapters"><img class="hf-logo" src="assets/hf-icon.webp" alt="">alice-adapters</a> across
-    Llama-3.1-8B, Llama-3.3-70B, Qwen2.5-7B / 14B, and Qwen3-8B / 32B. Adapters
-    target mid-to-late layers only (q/v/down/up_proj), where harmful routing
-    concentrates without disrupting early-layer feature extraction.
+    <strong>ODILE / ALICE safety adapters.</strong>
+    Rank-16 LoRA on Llama-3.1-8B / 3.3-70B, Qwen2.5-7B / 14B, and Qwen3-8B / 32B.
+    Targets mid-to-late layers (q/v/down/up_proj) where harmful routing concentrates.
+    <a class="pill hf-pill hf-odile" href="https://huggingface.co/memo-ozdincer/odile-adapters"><img class="hf-logo" src="assets/hf-icon.webp" alt="">odile-adapters</a>
+    <a class="pill hf-pill hf-alice" href="https://huggingface.co/memo-ozdincer/alice-adapters"><img class="hf-logo" src="assets/hf-icon.webp" alt="">alice-adapters</a>
   </p>
   <p>
-    Physics-informed perovskite solar cell characterization Temporal Convolutional
-    Network <a class="pill hf-pill hf-perovskite" href="https://huggingface.co/memo-ozdincer/perovskite-jv-surrogate"><img class="hf-logo" src="assets/hf-icon.webp" alt="">perovskite-jv-surrogate</a>.
-    Millisecond inference, a 100,000&times; speedup. ~0.49M params, 3 seeds.
-    Trained on 500K simulations (31 quantum solar-cell properties).
+    <strong>Perovskite J&ndash;V surrogate.</strong>
+    Physics-informed TCN for solar-cell characterization. Millisecond inference,
+    100,000&times; speedup over COMSOL. 0.49M params, trained on 500K simulations
+    (31 quantum solar-cell properties).
+    <a class="pill hf-pill hf-perovskite" href="https://huggingface.co/memo-ozdincer/perovskite-jv-surrogate"><img class="hf-logo" src="assets/hf-icon.webp" alt="">perovskite-jv-surrogate</a>
   </p>
   <p>
-    JepaAlign applies JEPA-style joint-embedding prediction to LLM fine-tuning,
-    using paired x / y encodings to align model representations across views of
-    the same intent. First application: rank-32 LoRA adapters (q_proj + v_proj)
-    on Qwen3-8B <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepa-paper-results-2026-05-06/tree/main/ce_floor/ce_floor_align_jepa_augmented_qwen3/lora_adapter"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepa-qwen3</a>
-    and Llama-3-8B <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepa-paper-results-2026-05-06/tree/main/ce_floor_jepa_llama3_ablation/ce_floor_align_jepa_augmented_llama3/lora_adapter"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepa-llama3</a>
-    with a circuit-breaker objective on JEPA-augmented data. In progress.
+    <strong>JepaAlign.</strong>
+    JEPA-style joint-embedding prediction for LLM fine-tuning &mdash; paired
+    x / y encodings align representations across views of the same intent.
+    Rank-32 LoRA on Qwen3-8B and Llama-3-8B with a circuit-breaker objective
+    on JEPA-augmented data. In progress.
+    <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepa-paper-results-2026-05-06/tree/main/ce_floor/ce_floor_align_jepa_augmented_qwen3/lora_adapter"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepa-qwen3</a>
+    <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepa-paper-results-2026-05-06/tree/main/ce_floor_jepa_llama3_ablation/ce_floor_align_jepa_augmented_llama3/lora_adapter"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepa-llama3</a>
   </p>
 </section>
 
 <section class="prose">
   <h2>Evals &amp; datasets I've deployed</h2>
   <p>
-    Rolled out and evaluated over 1M traces (1B+ tokens) across Llama, Qwen, Mistral,
-    DeepSeek, and Gemma (8B&ndash;685B) in Triton and TensorRT-LLM. Parallelized across
-    4&times;H100, 8&times;H200, and 2&times;/4&times;B200 nodes on bare metal / NVLink,
-    always keeping GPU utilization above 90%.
+    <strong>Trace rollouts at scale.</strong>
+    1M+ traces (1B+ tokens) across Llama, Qwen, Mistral, DeepSeek, and Gemma
+    (8B&ndash;685B) in Triton and TensorRT-LLM. 4&times;H100, 8&times;H200, and
+    2&times;/4&times;B200 nodes on bare metal / NVLink, 90%+ GPU utilization.
   </p>
   <p>
-    I build agentic data and evaluation harnesses end-to-end.
-    A 100K-trace dataset of benign-looking prompt injections plus a 566K JEPA-format
-    training set <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepadata"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepadata</a>,
-    both reverse-generated from 15 jailbreak datasets &times; 20 augmentation methods.
+    <strong>Benign-looking injection dataset.</strong>
+    A 100K-trace prompt-injection dataset plus a 566K JEPA-format training set,
+    reverse-generated from 15 jailbreak datasets &times; 20 augmentation methods.
+    <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepadata"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepadata</a>
   </p>
   <p>
-    Built a deterministic eval harness running 313K+ attack simulations across model
-    families, attack types, and supervision policies. Used as the verifiable
-    reward signal in an RLVR environment running on Kubernetes and as the backbone
-    of the ODILE / ALICE training data <a class="pill hf-pill hf-rrfa" href="https://huggingface.co/datasets/memo-ozdincer/rrfa-data"><img class="hf-logo" src="assets/hf-icon.webp" alt="">rrfa-data</a>.
+    <strong>Deterministic eval harness.</strong>
+    313K+ attack simulations across model families, attack types, and supervision
+    policies. Verifiable reward signal in a Kubernetes RLVR environment; backbone
+    of ODILE / ALICE training data.
+    <a class="pill hf-pill hf-rrfa" href="https://huggingface.co/datasets/memo-ozdincer/rrfa-data"><img class="hf-logo" src="assets/hf-icon.webp" alt="">rrfa-data</a>
   </p>
 </section>
 
