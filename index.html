@@ -545,10 +545,10 @@ footer {
   <h2>Currently building</h2>
   <div class="building">
     <ul>
-      <li>JepaAlign &mdash; JEPA-style joint-embedding predictive fine-tuning for LLMs (EMNLP 2026 submission, May 25)</li>
-      <li>Live ALICE demo on Hugging Face Spaces &mdash; late May</li>
-      <li>Public release of adversarial augmentation toolkit &mdash; end of May</li>
-      <li>Agent capability evals for frontier OSS models (DeepSeek V4 284B, Mistral Large 3 123B) &mdash; first results late May</li>
+      <li>JepaAlign: JEPA-style joint-embedding predictive fine-tuning for LLMs (EMNLP 2026 submission, May 25)</li>
+      <li>Live ALICE demo on Hugging Face Spaces (late May)</li>
+      <li>Public release of adversarial augmentation toolkit (end of May)</li>
+      <li>Agent capability evals for frontier OSS models, DeepSeek V4 284B and Mistral Large 3 123B (first results late May)</li>
     </ul>
   </div>
 </section>
@@ -574,10 +574,11 @@ footer {
     <a class="pill hf-pill hf-perovskite" href="https://huggingface.co/memo-ozdincer/perovskite-jv-surrogate"><img class="hf-logo" src="assets/hf-icon.webp" alt="">perovskite-jv-surrogate</a>
   </p>
   <p>
-    Joint-embedding predictive fine-tuning for LLM safety &mdash; aligns model
-    representations across paired clean / adversarial views of the same intent,
-    targeting attacks that hide harmful intent inside benign-looking framings.
-    Built on Qwen3-8B and Llama-3-8B. In progress.
+    Used JEPA-style joint-embedding objectives to get LLMs to generalize across
+    clean and adversarial framings of the same intent, so benign-looking
+    phrasings of harmful prompts stop fooling the model. Built on Qwen3-8B
+    and Llama-3-8B with a 566K JEPA-augmented training set I generated for the
+    task. In progress.
     <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepa-paper-results-2026-05-06/tree/main/ce_floor/ce_floor_align_jepa_augmented_qwen3/lora_adapter"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepa-qwen3</a>
     <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepa-paper-results-2026-05-06/tree/main/ce_floor_jepa_llama3_ablation/ce_floor_align_jepa_augmented_llama3/lora_adapter"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepa-llama3</a>
   </p>
@@ -592,8 +593,8 @@ footer {
     NVLink, 90%+ GPU utilization.
   </p>
   <p>
-    Agentic prompt-injection dataset &mdash; 100K traces of benign-looking
-    multi-turn injections plus a 566K training-format set, reverse-generated
+    Agentic prompt-injection dataset of 100K benign-looking multi-turn
+    injection traces, plus a 566K training-format set, reverse-generated
     from 15 jailbreak datasets &times; 20 augmentation methods.
     <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepadata"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepadata</a>
   </p>
@@ -806,8 +807,8 @@ footer {
       </div>
       <p class="abstract">
         A JEPA-style defense targeting benign-looking and socially-engineered LLM
-        attacks &mdash; attacks where harmful intent hides inside seemingly innocuous
-        framings, defeating defenses that suppress harmful prompts as isolated points.
+        attacks, where harmful intent hides inside seemingly innocuous framings
+        and defeats defenses that suppress harmful prompts as isolated points.
         PRA uses paired clean and adversarial prompts as two views of the same intent,
         with a small predictor mapping adversarial-view hidden states toward the clean
         view's commitment state. Across five attack classes and four defenses, PRA
