@@ -516,7 +516,7 @@ footer {
   <h2>Currently building</h2>
   <div class="building">
     <ul>
-      <li>JepaAlign &mdash; defense against benign-looking and socially-engineered LLM attacks (EMNLP 2026 submission, May 25)</li>
+      <li>JepaAlign &mdash; JEPA-style joint-embedding predictive fine-tuning for LLMs (EMNLP 2026 submission, May 25)</li>
       <li>Live ALICE demo on Hugging Face Spaces &mdash; late May</li>
       <li>Public release of adversarial augmentation toolkit &mdash; end of May</li>
       <li>Agent capability evals for frontier OSS models (DeepSeek V4 284B, Mistral Large 3 123B) &mdash; first results late May</li>
@@ -544,9 +544,10 @@ footer {
     Trained on 500K simulations (31 quantum solar-cell properties).
   </p>
   <p>
-    JepaAlign adapts JEPA-style predictive representation training to defend against
-    benign-looking and socially-engineered LLM attacks.
-    Trained rank-32 LoRA adapters (q_proj + v_proj) on Qwen3-8B <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepa-paper-results-2026-05-06/tree/main/ce_floor/ce_floor_align_jepa_augmented_qwen3/lora_adapter"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepa-qwen3</a>
+    JepaAlign applies JEPA-style joint-embedding prediction to LLM fine-tuning,
+    using paired x / y encodings to align model representations across views of
+    the same intent. First application: rank-32 LoRA adapters (q_proj + v_proj)
+    on Qwen3-8B <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepa-paper-results-2026-05-06/tree/main/ce_floor/ce_floor_align_jepa_augmented_qwen3/lora_adapter"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepa-qwen3</a>
     and Llama-3-8B <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepa-paper-results-2026-05-06/tree/main/ce_floor_jepa_llama3_ablation/ce_floor_align_jepa_augmented_llama3/lora_adapter"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepa-llama3</a>
     with a circuit-breaker objective on JEPA-augmented data. In progress.
   </p>
