@@ -177,6 +177,13 @@ p { margin: 0 0 12px; }
   border-radius: 4px;
   display: inline-block;
   margin-bottom: 6px;
+  max-width: 100%;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+.code-card .ch-body code {
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 .code-card .ch-title {
   font-size: 14.5px;
@@ -416,14 +423,36 @@ footer {
 }
 @media (max-width: 560px) {
   body { font-size: 15px; }
-  main { padding: 28px 14px 60px; }
+  main { padding: 28px 16px 60px; }
   header { grid-template-columns: 1fr; text-align: center; gap: 16px; }
   header .avatar { margin: 0 auto; width: 110px; height: 110px; }
   header h1 { font-size: 22px; }
   header .meta { font-size: 13px; }
-  header .contacts { justify-content: center; }
+  header .contacts { justify-content: center; gap: 4px 8px; }
   header .meta br { display: none; }
-  .paper { padding: 14px 16px; margin-bottom: 8px; }
+  .contact-pill { padding: 6px 10px; font-size: 13px; }
+
+  section { margin-top: 44px; }
+  h2 {
+    font-size: 13px;
+    color: var(--fg);
+    letter-spacing: 0.12em;
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+    border-bottom-color: var(--fg);
+  }
+
+  .bio p, .prose p { margin-bottom: 14px; }
+  .prose { font-size: 14px; }
+
+  .code-card { padding: 14px 16px; }
+  .code-card .path { font-size: 12px; }
+  .code-card .ch-title .scope { display: block; margin-left: 0; margin-top: 2px; }
+
+  .also-row { grid-template-columns: 1fr; gap: 2px; }
+  .also-date { font-size: 12.5px; }
+
+  .paper { padding: 14px 16px; margin-bottom: 10px; }
   .paper .title { font-size: 15px; }
   .paper .abstract { font-size: 13px; }
   .paper .fig { max-height: 240px; }
@@ -433,7 +462,7 @@ footer {
   .org.nus-seris { height: 48px; max-width: 180px; }
   .clone { font-size: 10.5px; }
   .clone .cmd { font-size: 10.5px; }
-  h2 { font-size: 11px; }
+  .pill { padding: 5px 11px; }
 }
 </style>
 </head>
@@ -493,7 +522,6 @@ footer {
       <a class="contact-pill" href="https://github.com/memo-ozdincer"><svg class="ic"><use href="#i-github"/></svg>GitHub</a>
       <a class="contact-pill" href="https://huggingface.co/memo-ozdincer"><img class="hf-logo" src="assets/hf-icon.webp" alt="">Hugging Face</a>
       <a class="contact-pill" href="https://linkedin.com/in/memo-ozdincer"><svg class="ic"><use href="#i-linkedin"/></svg>LinkedIn</a>
-      <a class="contact-pill" href="https://scholar.google.com/citations?user=hyKn-jUAAAAJ"><svg class="ic"><use href="#i-scholar"/></svg>Scholar</a>
     </div>
   </div>
 </header>
