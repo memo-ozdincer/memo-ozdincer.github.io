@@ -516,11 +516,10 @@ footer {
   <h2>Currently building</h2>
   <div class="building">
     <ul>
-      <li>Agent capability evals for frontier open-source models (DeepSeek V4 284B, Mistral Large 3 123B) on real-world, industry-specific use cases</li>
-      <li>JepaAlign: JEPA-style predictive representation training for LLM safety</li>
-      <li>Training generative chemistry diffusion models for reaction-rate predictions (Matter Lab &times; NVIDIA)</li>
-      <li>Live ALICE demo on Hugging Face Spaces</li>
-      <li>Public release of adversarial augmentation toolkit</li>
+      <li>JepaAlign &mdash; defense against benign-looking and socially-engineered LLM attacks (EMNLP 2026 submission, May 25)</li>
+      <li>Live ALICE demo on Hugging Face Spaces &mdash; late May</li>
+      <li>Public release of adversarial augmentation toolkit &mdash; end of May</li>
+      <li>Agent capability evals for frontier OSS models (DeepSeek V4 284B, Mistral Large 3 123B) &mdash; first results late May</li>
     </ul>
   </div>
 </section>
@@ -545,7 +544,8 @@ footer {
     Trained on 500K simulations (31 quantum solar-cell properties).
   </p>
   <p>
-    JepaAlign adapts JEPA-style predictive representation training to LLM safety.
+    JepaAlign adapts JEPA-style predictive representation training to defend against
+    benign-looking and socially-engineered LLM attacks.
     Trained rank-32 LoRA adapters (q_proj + v_proj) on Qwen3-8B <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepa-paper-results-2026-05-06/tree/main/ce_floor/ce_floor_align_jepa_augmented_qwen3/lora_adapter"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepa-qwen3</a>
     and Llama-3-8B <a class="pill hf-pill hf-jepa" href="https://huggingface.co/datasets/memo-ozdincer/jepa-paper-results-2026-05-06/tree/main/ce_floor_jepa_llama3_ablation/ce_floor_align_jepa_augmented_llama3/lora_adapter"><img class="hf-logo" src="assets/hf-icon.webp" alt="">jepa-llama3</a>
     with a circuit-breaker objective on JEPA-augmented data. In progress.
@@ -766,7 +766,7 @@ footer {
     <div class="body">
       <p class="title">Predictive Representation Alignment Improves Generalization in LLM Safety</p>
       <p class="authors"><a href="https://scholar.google.com/citations?user=8a9YOF4AAAAJ&amp;hl=en">Samuel Simko</a>, <span class="me">Mehmet Ozdincer</span>, Damiano Amatruda, <a href="https://scholar.google.com/citations?user=DZ-fHPgAAAAJ&amp;hl=en">Bernhard Sch&ouml;lkopf</a>, <a href="https://scholar.google.com/citations?user=Mdr6wjUAAAAJ&amp;hl=en">Zhijing Jin</a></p>
-      <span class="venue draft">ICLR 2027 submission &middot; draft in preparation</span>
+      <span class="venue">EMNLP 2026 &middot; in submission</span>
       <div class="orgs">
         <span class="org-tip" data-label="Jinesis AI Lab"><img class="org" src="assets/orgs/jinesis.jpg" alt="Jinesis AI Lab"></span>
         <span class="org-tip" data-label="Vector Institute"><img class="org" src="assets/orgs/vector.jpg" alt="Vector Institute"></span>
@@ -774,13 +774,13 @@ footer {
         <span class="org-tip" data-label="Max Planck Institute for Intelligent Systems"><img class="org" src="assets/orgs/maxplanck.png" alt="Max Planck"></span>
       </div>
       <p class="abstract">
-        Existing defenses suppress harmful prompts as isolated points in representation
-        space, missing the shared structure between adversarial and clean variants of
-        the same intent. PRA uses paired clean and adversarial prompts as two views of
-        the same intent, with a small predictor mapping adversarial-view hidden states
-        toward the clean view's commitment state. Across five attack classes and four
-        defenses, PRA reduces average ASR under StrongREJECT without harming benign
-        capability.
+        A JEPA-style defense targeting benign-looking and socially-engineered LLM
+        attacks &mdash; attacks where harmful intent hides inside seemingly innocuous
+        framings, defeating defenses that suppress harmful prompts as isolated points.
+        PRA uses paired clean and adversarial prompts as two views of the same intent,
+        with a small predictor mapping adversarial-view hidden states toward the clean
+        view's commitment state. Across five attack classes and four defenses, PRA
+        reduces average ASR under StrongREJECT without harming benign capability.
       </p>
       <div class="pills">
         <a class="pill draft-note" href="mailto:memo@cs.toronto.edu?subject=PRA%20draft%20request"><svg class="ic"><use href="#i-mailout"/></svg>Draft available upon request</a>
